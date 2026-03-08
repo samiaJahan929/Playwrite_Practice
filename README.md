@@ -105,4 +105,22 @@ Steps included:
 6. Open and close employee details
 7. Logout from the system
 
+## Installation
+- npm install
+- npx playwright install
+- npx playwright test
+- npx playwright test "./tests/login.spec.ts" --headed
+
+## Key Features
+
+- Automated login validation
+- Multiple negative test scenarios
+- Random employee selection
+- Asset search testing
+- UI navigation validation
+- Playwright locators using role-based selectors
+
+
+
+
 
