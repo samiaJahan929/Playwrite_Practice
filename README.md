@@ -1,5 +1,6 @@
 # PeopleDesk Automation Testing (Playwright)
-![image](<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/2db812dd-094c-424e-8f4f-7d570a81755c" />
+![image](<img width="728" height="524" alt="image" src="https://github.com/user-attachments/assets/aa7b60dd-5c93-4880-ab16-8e97ab45c5af" />
+
 )
 
 This project contains end-to-end automated test scripts for the **PeopleDesk Web Application** using **Playwright with TypeScript**.  
