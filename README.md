@@ -1,4 +1,5 @@
-# :robot: PeopleDesk Automation Testing (Playwright)
+# PeopleDesk Automation Testing (Playwright)
+![image](file:///C:/Users/dell/Downloads/playwriteimage.svg)
 
 This project contains end-to-end automated test scripts for the **PeopleDesk Web Application** using **Playwright with TypeScript**.  
 The tests validate login functionality, dashboard navigation, asset management search, and employee service book interactions.
