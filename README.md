@@ -1,4 +1,4 @@
-# PeopleDesk Automation Testing (Playwright)
+# :robot: PeopleDesk Automation Testing (Playwright)
 
 This project contains end-to-end automated test scripts for the **PeopleDesk Web Application** using **Playwright with TypeScript**.  
 The tests validate login functionality, dashboard navigation, asset management search, and employee service book interactions.
