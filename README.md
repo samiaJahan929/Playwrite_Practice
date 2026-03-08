@@ -1,7 +1,4 @@
-# PeopleDesk Automation Testing (Playwright)
-![image](<img width="728" height="524" alt="image" src="https://github.com/user-attachments/assets/aa7b60dd-5c93-4880-ab16-8e97ab45c5af" />
-
-)
+# 👹 PeopleDesk Automation Testing (Playwright)
 
 This project contains end-to-end automated test scripts for the **PeopleDesk Web Application** using **Playwright with TypeScript**.  
 The tests validate login functionality, dashboard navigation, asset management search, and employee service book interactions.
@@ -32,7 +29,8 @@ The tests simulate real user actions such as login, navigation, searching assets
 ---
 
 ## Project Structure
-
+The framework follows a modular pattern to ensure scalability and ease of maintenance:
+```
 project-root
 │
 ├── tests
@@ -43,7 +41,7 @@ project-root
 ├── playwright.config.ts
 ├── package.json
 └── README.md
-
+```
 
 ---
 
@@ -109,10 +107,16 @@ Steps included:
 7. Logout from the system
 
 ## Installation
-- npm install
-- npx playwright install
-- npx playwright test
-- npx playwright test "./tests/login.spec.ts" --headed
+``` npm install ```
+```npx playwright install```
+``` npx playwright test```
+
+## Run the Test
+```   npx playwright test "./tests/login.spec.ts" --headed  ```
+
+**View Test Report**
+``` npx playwright show-report ```
+
 
 ## Key Features
 
