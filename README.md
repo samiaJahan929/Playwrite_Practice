@@ -47,7 +47,7 @@ project-root
 
 ## Test Files Description
 
-### 1. login.spec.ts
+### 1. Login.spec.ts
 
 This file contains multiple login test cases including:
 
