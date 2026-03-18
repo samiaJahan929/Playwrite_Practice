@@ -5,6 +5,9 @@ import { only } from 'node:test';
 test('login, open dashboard, and scroll page', async ({ page }) => {
   test.setTimeout(60000);
 
+  const userId = process.env.MY_USER_ID || '';
+  const userPass = process.env.MY_PASSWORD || '';
+
   // Maximize browser window in Chromium (fallback-safe for headless/unsupported runs).
   try {
     const session = await page.context().newCDPSession(page);
@@ -21,11 +24,11 @@ test('login, open dashboard, and scroll page', async ({ page }) => {
   await expect(page).toHaveTitle(/PeopleDesk/);
 
 
-  await page.getByRole('textbox', { name: /enter your id/i }).fill('peopledeskdemo@ibos.io');
+  await page.getByRole('textbox', { name: /enter your id/i }).fill(userId);
 
   const passwordInput: Locator = page
     .getByRole('textbox', { name: /enter your password/i });
-  await passwordInput.fill('peopledeskdemo@ibos');
+  await passwordInput.fill(userPass);
 
   await page.getByRole('button', { name: /log in/i }).click();
   await page.waitForTimeout(4000);

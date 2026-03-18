@@ -1,8 +1,11 @@
 import { test, expect, type Page } from '@playwright/test';
+import dotenv from 'dotenv';
 
-const BASE_URL = 'https://devapp.peopledesk.io/';
-const VALID_EMAIL = 'peopledeskdemo@ibos.io';
-const VALID_PASSWORD = 'peopledeskdemo@ibos';
+dotenv.config();
+
+const BASE_URL = process.env.BASE_URL || 'https://devapp.peopledesk.io/';
+const VALID_EMAIL = process.env.VALID_EMAIL || '';
+const VALID_PASSWORD = process.env.VALID_PASSWORD || '';
 
 async function openLoginPage(page: Page): Promise<void> {
   await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
