@@ -1,10 +1,13 @@
 import { test, expect, type Locator, type Page } from '@playwright/test'; 
-import { only } from 'node:test';
+import * as dotenv from 'dotenv';
 
+
+dotenv.config();
 
 test('login, open dashboard, and scroll page', async ({ page }) => {
   test.setTimeout(60000);
 
+  const BASE_URL = process.env.BASE_URL || ''
   const userId = process.env.MY_USER_ID || '';
   const userPass = process.env.MY_PASSWORD || '';
 
@@ -20,7 +23,7 @@ test('login, open dashboard, and scroll page', async ({ page }) => {
     // Ignore when browser window bounds API is unavailable.
   }
 
-  await page.goto('https://devapp.peopledesk.io/', { waitUntil: 'domcontentloaded' });
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/PeopleDesk/);
 
 

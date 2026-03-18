@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const BASE_URL = process.env.BASE_URL || 'https://devapp.peopledesk.io/';
-const VALID_EMAIL = process.env.VALID_EMAIL || '';
-const VALID_PASSWORD = process.env.VALID_PASSWORD || '';
+const BASE_URL = process.env.BASE_URL || '';
+const userId = process.env.MY_USER_ID || '';
+const userPass = process.env.MY_PASSWORD || '';
 
 async function openLoginPage(page: Page): Promise<void> {
   await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
@@ -30,7 +30,7 @@ async function expectLoginFailed(page: Page): Promise<void> {
 test.describe('PeopleDesk Login - 10 test cases', () => {
   test('TC01: login with valid credentials', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL, VALID_PASSWORD);
+    await submitLogin(page, userId, userPass);
     await expect(page.getByText('Dashboard', { exact: true }).first()).toBeVisible({
       timeout: 20_000
     });
@@ -39,7 +39,7 @@ test.describe('PeopleDesk Login - 10 test cases', () => {
 
   test('TC02: login with valid email and wrong password', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL, 'WrongPassword123!');
+    await submitLogin(page, userId, 'WrongPassword123!');
     await expectLoginFailed(page);
 
     await page.waitForTimeout(2000);
@@ -47,7 +47,7 @@ test.describe('PeopleDesk Login - 10 test cases', () => {
 
   test('TC03: login with wrong email and valid password', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, 'wrong.user@ibos.io', VALID_PASSWORD);
+    await submitLogin(page, 'wrong.user@ibos.io', userPass);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
@@ -61,21 +61,21 @@ test.describe('PeopleDesk Login - 10 test cases', () => {
 
   test('TC05: login with invalid email format', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, 'invalid-email-format', VALID_PASSWORD);
+    await submitLogin(page, 'invalid-email-format', userPass);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
 
   test('TC06: login with empty email', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, '', VALID_PASSWORD);
+    await submitLogin(page, '', userPass);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
 
   test('TC07: login with empty password', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL, '');
+    await submitLogin(page, userId, '');
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
@@ -106,21 +106,21 @@ test.describe('PeopleDesk Login - 10 test cases', () => {
 test.describe('PeopleDesk Login - Edge cases', () => {
   test('TC11: email with leading and trailing spaces', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, `  ${VALID_EMAIL}  `, VALID_PASSWORD);
+    await submitLogin(page, `  ${userId}  `, userPass);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
 
   test('TC12: password with leading and trailing spaces', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL, `  ${VALID_PASSWORD}  `);
+    await submitLogin(page, userId, `  ${userPass}  `);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
 
   test('TC13: email upper/lower case variation', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL.toUpperCase(), VALID_PASSWORD);
+    await submitLogin(page, userId.toUpperCase(), userPass);
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });
@@ -133,7 +133,7 @@ test.describe('PeopleDesk Login - Edge cases', () => {
 
   test('TC15: special characters only in password', async ({ page }) => {
     await openLoginPage(page);
-    await submitLogin(page, VALID_EMAIL, '!@#$%^&*()_+{}[]|:;<>,.?/~`');
+    await submitLogin(page, userId, '!@#$%^&*()_+{}[]|:;<>,.?/~`');
     await expectLoginFailed(page);
     await page.waitForTimeout(2000);
   });

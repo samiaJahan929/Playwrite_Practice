@@ -1,8 +1,14 @@
 import { test, expect, type Locator, type Page } from '@playwright/test'; 
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 
 test('login, open dashboard, and scroll page', async ({ page }) => {
   test.setTimeout(60000);
+
+  const BASE_URL = process.env.BASE_URL || ''
+  const userId = process.env.MY_USER_ID || '';
+  const userPass = process.env.MY_PASSWORD || '';
 
   // Maximize browser window in Chromium (fallback-safe for headless/unsupported runs).
   try {
@@ -16,15 +22,15 @@ test('login, open dashboard, and scroll page', async ({ page }) => {
     // Ignore when browser window bounds API is unavailable.
   }
 
-  await page.goto('https://devapp.peopledesk.io/', { waitUntil: 'domcontentloaded' });
+  await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/PeopleDesk/);
 
 
-  await page.getByRole('textbox', { name: /enter your id/i }).fill('peopledeskdemo@ibos.io');
+  await page.getByRole('textbox', { name: /enter your id/i }).fill(userId);
 
   const passwordInput: Locator = page
     .getByRole('textbox', { name: /enter your password/i });
-  await passwordInput.fill('peopledeskdemo@ibos');
+  await passwordInput.fill(userPass);
 
   await page.getByRole('button', { name: /log in/i }).click();
   const dashboardText = page.getByText('Dashboard', { exact: true }).nth(1);
